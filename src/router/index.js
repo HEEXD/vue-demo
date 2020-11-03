@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 Vue.use(VueRouter)
 
 let routes = [
     {
-        path:'/demo',
-        name:'demo',
-        component : () => import('@/views/demo.vue')
+        path: '/demo',
+        name: 'demo',
+        component: () => import('@/views/demo.vue')
     }
 ];
 
