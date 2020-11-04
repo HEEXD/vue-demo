@@ -7,7 +7,7 @@ let routes = [
     {
         path: '/demo',
         name: 'demo',
-        component: () => import('@/views/demo.vue')
+        component: () => import('../views/demo')
     }
 ];
 
