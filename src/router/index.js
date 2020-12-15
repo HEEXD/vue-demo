@@ -8,6 +8,11 @@ let routes = [
         path: '/demo',
         name: 'demo',
         component: () => import('../views/demo')
+    },
+    {
+        path: '/add',
+        name: 'add',
+        component: () => import('../views/add')
     }
 ];
 

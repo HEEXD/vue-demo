@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="divClass">
         <p>{{ msg }}</p>
         <input type="text" v-model="msg">
         <p v-if="msg > 10">测试v-if</p>
@@ -8,60 +8,62 @@
         <table>
             <thead>
             <tr>
+                <th>id</th>
                 <th>name</th>
-                <th>age</th>
-                <th>sex</th>
+                <th>pwd</th>
             </tr>
             </thead>
             <tbody>
             <tr v-for="person in persons" :key="person.id">
+                <td>{{ person.id }}</td>
                 <td>{{ person.name }}</td>
-                <td>{{ person.age }}</td>
-                <td>{{ person.sex }}</td>
+                <td>{{ person.pwd }}</td>
             </tr>
             </tbody>
         </table>
+        <button @click="add" style="margin-top: 10px">新增</button>
     </div>
 </template>
 
 <script>
+
+import {list} from "../api/user";
+
 export default {
     name: "demo",
     data() {
         return {
             msg: "hello vue!",
-            persons: [
-                {
-                    id: 1,
-                    name: 'hxd',
-                    age: '20',
-                    sex: '男'
-                },
-                {
-                    id: 2,
-                    name: 'wmj',
-                    age: '21',
-                    sex: '女'
-                }
-            ]
+            persons: []
         }
     },
     methods:{
-        add() {
-            this.$router.push("/demo")
+        async add() {
+            /*this.$router.push({
+                path: '/add'
+            })*/
+            let res = await list();
+            this.persons = res;
+            console.log(res)
         }
     }
 }
 </script>
 
-<style>
+<style scoped>
 tr td, th {
-    text-align: center;
     border: 1px solid black;
 }
 
 table {
     width: 30%;
     border-collapse: collapse;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+
+.divClass {
+    text-align: center;
+    margin: 0 auto;
 }
 </style>
