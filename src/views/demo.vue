@@ -5,6 +5,10 @@
         <p v-if="msg > 10">测试v-if</p>
         <p v-else>测试v-else</p>
         <p v-show="msg < 10">测试v-show</p>
+        <button @click="skip" style="margin-top: 10px">跳转新增页面</button>
+        <hr/>
+
+        <button @click="getUserList" style="margin-top: 10px">调用接口</button>
         <table>
             <thead>
             <tr>
@@ -21,7 +25,44 @@
             </tr>
             </tbody>
         </table>
-        <button @click="add" style="margin-top: 10px">新增</button>
+
+        <hr/>
+        <div>
+            <label>name:</label>
+            <input type="text" v-model="newPerson.name">
+        </div>
+        <div>
+            <label>age:</label>
+            <input type="text" v-model="newPerson.age">
+        </div>
+        <div>
+            <label>sex:</label>
+            <select v-model="newPerson.sex">
+                <option value="male">male</option>
+                <option value="female">female</option>
+            </select>
+        </div>
+        <button @click="createPerson">创建用户</button>
+        <table>
+            <thead>
+            <tr>
+                <th>name</th>
+                <th>age</th>
+                <th>sex</th>
+                <th>del</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="(person, index) in newPersons" :key="person.id">
+                <td>{{ person.name }}</td>
+                <td>{{ person.age }}</td>
+                <td>{{ person.sex }}</td>
+                <td>
+                    <button @click="delPerson({index})">del</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 
@@ -34,17 +75,27 @@ export default {
     data() {
         return {
             msg: "hello vue!",
-            persons: []
+            persons: [],
+            newPerson: {name: '', age: 0, sex: 'male'},
+            newPersons: []
         }
     },
-    methods:{
-        async add() {
-            /*this.$router.push({
+    methods: {
+        skip() {
+            this.$router.push({
                 path: '/add'
-            })*/
+            })
+        },
+        async getUserList() {
             let res = await list();
             this.persons = res;
-            console.log(res)
+        },
+        createPerson() {
+            this.newPersons.push(this.newPerson);
+            this.newPerson = {name: '', age: 0, sex: 'male'}
+        },
+        delPerson(index) {
+            this.newPersons.splice(index, 1);
         }
     }
 }
