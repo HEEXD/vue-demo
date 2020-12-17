@@ -9,33 +9,35 @@
         <hr/>
 
         <button @click="getUserList" style="margin-top: 10px">调用接口</button>
-        <table>
-            <thead>
-            <tr>
-                <th>id</th>
-                <th>name</th>
-                <th>pwd</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="person in persons" :key="person.id">
-                <td>{{ person.id }}</td>
-                <td>{{ person.name }}</td>
-                <td>{{ person.pwd }}</td>
-            </tr>
-            </tbody>
-        </table>
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>pwd</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="person in persons" :key="person.id">
+                    <td>{{ person.id }}</td>
+                    <td>{{ person.name }}</td>
+                    <td>{{ person.pwd }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
         <hr/>
-        <div>
+        <div class="testDiv">
             <label>name:</label>
             <input type="text" v-model="newPerson.name">
         </div>
-        <div>
+        <div class="testDiv">
             <label>age:</label>
             <input type="text" v-model="newPerson.age">
         </div>
-        <div>
+        <div class="testDiv">
             <label>sex:</label>
             <select v-model="newPerson.sex">
                 <option value="male">male</option>
@@ -43,26 +45,28 @@
             </select>
         </div>
         <button @click="createPerson">创建用户</button>
-        <table>
-            <thead>
-            <tr>
-                <th>name</th>
-                <th>age</th>
-                <th>sex</th>
-                <th>del</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="(person, index) in newPersons" :key="person.id">
-                <td>{{ person.name }}</td>
-                <td>{{ person.age }}</td>
-                <td>{{ person.sex }}</td>
-                <td>
-                    <button @click="delPerson({index})">del</button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th>name</th>
+                    <th>age</th>
+                    <th>sex</th>
+                    <th>^_^</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(person, index) in newPersons" :key="person.id">
+                    <td>{{ person.name }}</td>
+                    <td>{{ person.age }}</td>
+                    <td>{{ person.sex }}</td>
+                    <td>
+                        <button @click="delPerson({index})">×</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </template>
 
@@ -76,7 +80,7 @@ export default {
         return {
             msg: "hello vue!",
             persons: [],
-            newPerson: {name: '', age: 0, sex: 'male'},
+            newPerson: {name: '', age: '', sex: ''},
             newPersons: []
         }
     },
@@ -92,7 +96,7 @@ export default {
         },
         createPerson() {
             this.newPersons.push(this.newPerson);
-            this.newPerson = {name: '', age: 0, sex: 'male'}
+            this.newPerson = {name: '', age: '', sex: ''}
         },
         delPerson(index) {
             this.newPersons.splice(index, 1);
@@ -106,6 +110,10 @@ tr td, th {
     border: 1px solid black;
 }
 
+div {
+    padding: 10px;
+}
+
 table {
     width: 30%;
     border-collapse: collapse;
@@ -116,5 +124,9 @@ table {
 .divClass {
     text-align: center;
     margin: 0 auto;
+}
+
+.testDiv {
+
 }
 </style>
