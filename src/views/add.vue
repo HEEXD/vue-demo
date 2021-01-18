@@ -7,12 +7,20 @@
         <div>
             <p>测试222</p>
         </div>
+        <button @click="goBack">返回</button>
     </div>
 </template>
 
 <script>
 export default {
-    name: "add"
+    name: "add",
+    methods : {
+        goBack() {
+            this.$router.push({
+                path: '/demo'
+            })
+        }
+    }
 }
 </script>
 

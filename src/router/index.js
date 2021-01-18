@@ -13,10 +13,17 @@ let routes = [
         path: '/add',
         name: 'add',
         component: () => import('../views/add')
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: () => import('../views/login')
     }
 ];
 
 const router = new VueRouter({
+    mode: 'history',
+    base: process.env.BASE_URL,
     routes
 })
 
