@@ -25,13 +25,16 @@ export default {
                 return;
             }
             if (this.passoword === "") {
-                this.$message.error("请输入密码！");
+                this.$message.error("请输入密码！");das
                 return;
             }
             let res = await login(this.username, this.passoword);
             if (res.code === 200) {
                 if(res.details.flag === "success") {
                     this.$message.success(res.message);
+                    await this.$router.push({
+                        path: '/demo'
+                    })
                 }
                 if(res.details.flag === "failure") {
                     this.$message.error(res.message);
