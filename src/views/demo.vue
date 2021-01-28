@@ -67,6 +67,8 @@
                 </tbody>
             </table>
         </div>
+        <hr/>
+        <el-button type="primary" @click="skipWorker">跳转</el-button>
     </div>
 </template>
 
@@ -100,6 +102,10 @@ export default {
         },
         delPerson(index) {
             this.newPersons.splice(index, 1);
+        },
+        skipWorker() {
+            window.location.href = "http://47.101.183.56/springbootDemo/user/worker";
+            //window.open("http://47.101.183.56/springbootDemo/user/worker");
         }
     }
 }
