@@ -25,7 +25,7 @@ export default {
                 return;
             }
             if (this.passoword === "") {
-                this.$message.error("请输入密码！");das
+                this.$message.error("请输入密码！");
                 return;
             }
             let res = await login(this.username, this.passoword);
